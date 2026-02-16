@@ -25,6 +25,22 @@ interface AppState {
 
   isMuted: boolean;
   toggleMute: () => void;
+
+  lots: Lot[];
+  activeLot: string | null;
+  setActiveLot: (id: string | null) => void;
+
+  weather: 'sunny' | 'rain' | 'snow';
+  setWeather: (weather: 'sunny' | 'rain' | 'snow') => void;
+}
+
+export interface Lot {
+  id: string;
+  position: [number, number, number];
+  size: [number, number]; // width, depth
+  price: string;
+  area: string;
+  status: 'available' | 'sold' | 'reserved';
 }
 
 export const useStore = create<AppState>((set) => ({
@@ -61,4 +77,16 @@ export const useStore = create<AppState>((set) => ({
 
   isMuted: true,
   toggleMute: () => set((state) => ({ isMuted: !state.isMuted })),
+
+  lots: [
+    { id: 'lot-101', position: [-15, 0.1, 15], size: [10, 10], price: '$1,200,000', area: '500 м²', status: 'available' },
+    { id: 'lot-102', position: [-25, 0.1, 5], size: [12, 8], price: '$950,000', area: '400 м²', status: 'reserved' },
+    { id: 'lot-103', position: [15, 0.1, -15], size: [15, 15], price: '$2,500,000', area: '800 м²', status: 'available' },
+    { id: 'lot-104', position: [25, 0.1, -5], size: [8, 12], price: '$800,000', area: '350 м²', status: 'sold' },
+  ],
+  activeLot: null,
+  setActiveLot: (id) => set({ activeLot: id }),
+
+  weather: 'sunny',
+  setWeather: (weather) => set({ weather }),
 }));

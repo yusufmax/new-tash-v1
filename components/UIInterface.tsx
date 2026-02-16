@@ -3,6 +3,7 @@ import { useStore } from '../store/useStore';
 import { CameraMode } from '../types';
 import gsap from 'gsap';
 import { POI_DATA } from './POISystem';
+import { LotInfoPanel } from './LotInfoPanel';
 
 export const UIInterface: React.FC = () => {
   const {
@@ -29,6 +30,7 @@ export const UIInterface: React.FC = () => {
 
   return (
     <div className={`fixed top-0 left-0 w-full h-full pointer-events-none z-20 font-sans ${textColor} select-none`}>
+      <LotInfoPanel />
 
       {/* --- POI INFO CARD OVERLAY --- */}
       {activePOI && activePOIData && (
@@ -126,6 +128,18 @@ export const UIInterface: React.FC = () => {
               className={`w-8 h-8 rounded-full flex items-center justify-center transition-all ${isNight ? 'bg-teal-600 text-white' : 'text-[#1e293b]/50 hover:text-[#1e293b]'}`}
             >
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>
+            </button>
+          </div>
+          {/* Weather Toggle */}
+          <div className={`rounded-full p-1 flex items-center backdrop-blur-md border ml-4 ${isNight ? 'bg-white/10 border-white/10' : 'bg-black/5 border-black/10'}`}>
+            <button onClick={() => useStore.getState().setWeather('sunny')} className={`w-8 h-8 rounded-full flex items-center justify-center transition-all ${useStore.getState().weather === 'sunny' ? (isNight ? 'bg-white text-black' : 'bg-black text-white') : 'opacity-50 hover:opacity-100'}`}>
+              ☀️
+            </button>
+            <button onClick={() => useStore.getState().setWeather('rain')} className={`w-8 h-8 rounded-full flex items-center justify-center transition-all ${useStore.getState().weather === 'rain' ? 'bg-blue-500 text-white' : 'opacity-50 hover:opacity-100'}`}>
+              🌧️
+            </button>
+            <button onClick={() => useStore.getState().setWeather('snow')} className={`w-8 h-8 rounded-full flex items-center justify-center transition-all ${useStore.getState().weather === 'snow' ? 'bg-white text-blue-900' : 'opacity-50 hover:opacity-100'}`}>
+              ❄️
             </button>
           </div>
 
