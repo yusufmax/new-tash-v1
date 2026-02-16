@@ -4,7 +4,13 @@ import { useStore } from '../store/useStore';
 import * as THREE from 'three';
 
 export const ModelCity: React.FC = () => {
-    const { scene } = useGLTF('/city.glb');
+    // Ensure the path is correct for production (relative to root)
+    const modelPath = '/city.glb';
+    console.log("Attempting to load GLTF from:", modelPath);
+
+    const { scene } = useGLTF(modelPath, true, true, (loader) => {
+        console.log("GLTF Loader initialized");
+    });
     const isExploded = useStore((state) => state.isExploded);
 
     useEffect(() => {
