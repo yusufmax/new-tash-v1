@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { useStore } from '../store/useStore';
-import { SectionData } from '../types';
+import { SectionData, CameraMode } from '../types';
 import gsap from 'gsap';
 
 const SECTIONS: SectionData[] = [
@@ -45,6 +45,7 @@ export const Overlay: React.FC = () => {
   const scrollProgress = useStore((state) => state.scrollProgress);
   const setActiveSection = useStore((state) => state.setActiveSection);
   const isNight = useStore((state) => state.isNight);
+  const mode = useStore((state) => state.mode);
   const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
@@ -99,7 +100,7 @@ export const Overlay: React.FC = () => {
   const descColor = isNight ? 'text-gray-300' : 'text-slate-600';
 
   return (
-    <div className={`fixed inset-0 pointer-events-none z-10 flex flex-col justify-center items-start px-8 md:px-24 max-w-7xl mx-auto ${textColor}`}>
+    <div className={`fixed inset-0 pointer-events-none z-10 flex flex-col justify-center items-start px-8 md:px-24 max-w-7xl mx-auto ${textColor} transition-opacity duration-500 ${mode === CameraMode.EXPLORE ? 'opacity-0' : 'opacity-100'}`}>
       {SECTIONS.map((section, idx) => (
         <div
           key={section.id}
