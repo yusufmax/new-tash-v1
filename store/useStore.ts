@@ -22,6 +22,9 @@ interface AppState {
 
   activePOI: string | null;
   setActivePOI: (id: string | null) => void;
+
+  isMuted: boolean;
+  toggleMute: () => void;
 }
 
 export const useStore = create<AppState>((set) => ({
@@ -55,4 +58,7 @@ export const useStore = create<AppState>((set) => ({
 
   activePOI: null,
   setActivePOI: (id) => set({ activePOI: id }),
+
+  isMuted: true,
+  toggleMute: () => set((state) => ({ isMuted: !state.isMuted })),
 }));

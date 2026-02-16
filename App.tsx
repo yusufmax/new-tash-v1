@@ -3,11 +3,13 @@ import { Experience } from './components/Experience';
 import { Overlay } from './components/Overlay';
 import { UIInterface } from './components/UIInterface';
 import { LoadingScreen } from './components/LoadingScreen';
+import { AudioController } from './components/AudioController';
 
 const App: React.FC = () => {
   return (
     <>
       <LoadingScreen />
+      <AudioController />
       {/* 3D Canvas Background */}
       <div className="fixed top-0 left-0 w-full h-screen z-0">
         <Experience />

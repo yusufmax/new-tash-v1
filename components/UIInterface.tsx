@@ -95,10 +95,22 @@ export const UIInterface: React.FC = () => {
 
         {/* Left Controls */}
         <div className="flex items-center gap-6 mb-4 md:mb-0 w-full md:w-auto">
-          {/* Unmute */}
-          <button className="flex items-center gap-2 text-[10px] tracking-widest opacity-70 hover:opacity-100 uppercase">
-            <div className="w-1 h-1 bg-teal-400 rounded-full animate-pulse"></div>
-            ВКЛ. ЗВУК
+          {/* Mute/Unmute */}
+          <button
+            onClick={useStore((state) => state.toggleMute)}
+            className="flex items-center gap-2 text-[10px] tracking-widest opacity-70 hover:opacity-100 uppercase"
+          >
+            {useStore((state) => state.isMuted) ? (
+              <>
+                <div className="w-1 h-1 bg-red-400 rounded-full"></div>
+                ВКЛ. ЗВУК
+              </>
+            ) : (
+              <>
+                <div className="w-1 h-1 bg-teal-400 rounded-full animate-pulse"></div>
+                ВЫКЛ. ЗВУК
+              </>
+            )}
           </button>
 
           {/* Day/Night Toggle */}
