@@ -1,0 +1,4 @@
+{
+  "name": "Urban Flow 3D",
+  "description": "An immersive 3D scrollytelling experience exploring a city model. Features cinematic camera paths synchronized with scroll, data visualization layers, and interactive exploration modes using React Three Fiber and GSAP."
+}
