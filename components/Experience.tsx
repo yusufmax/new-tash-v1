@@ -7,7 +7,6 @@ import { DynamicClouds } from './Clouds';
 import { useStore } from '../store/useStore';
 import * as THREE from 'three';
 
-import { POISystem } from './POISystem';
 import { LotSystem } from './LotSystem';
 import { WeatherSystem } from './WeatherSystem';
 
@@ -50,7 +49,6 @@ export const Experience: React.FC = () => {
 
       {/* Content */}
       <Suspense fallback={null}>
-        <POISystem />
         <LotSystem />
         <ModelCity />
         <WeatherSystem />
