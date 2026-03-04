@@ -1,15 +1,9 @@
 import React, { useMemo, useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
-import { useStore } from '../store/useStore';
 
 export const TrafficSystem: React.FC = () => {
     const meshRef = useRef<THREE.InstancedMesh>(null);
-    const layers = useStore((state) => state.layers);
-
-    // Check if transport layer is active (id: 'transport')
-    const isTransportActive = layers.find(l => l.id === 'transport')?.active;
-
     const count = 50; // Number of cars
 
     // Define simple roads (loops)
@@ -42,7 +36,7 @@ export const TrafficSystem: React.FC = () => {
     const dummy = useMemo(() => new THREE.Object3D(), []);
 
     useFrame(() => {
-        if (!meshRef.current || !isTransportActive) return;
+        if (!meshRef.current) return;
 
         cars.forEach((car, i) => {
             // Update position
@@ -66,10 +60,6 @@ export const TrafficSystem: React.FC = () => {
         meshRef.current.instanceMatrix.needsUpdate = true;
         if (meshRef.current.instanceColor) meshRef.current.instanceColor.needsUpdate = true;
     });
-
-    // If layer is not active, we still render the mesh but could hide it.
-    // Returning null completely removes it from scene, which is fine.
-    if (!isTransportActive) return null;
 
     return (
         <instancedMesh ref={meshRef} args={[undefined, undefined, count]}>

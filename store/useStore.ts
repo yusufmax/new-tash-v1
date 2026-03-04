@@ -52,7 +52,6 @@ export const useStore = create<AppState>((set) => ({
 
   layers: [
     { id: 'buildings', label: 'Архитектура', active: true, color: '#e5e5e5' },
-    { id: 'transport', label: 'Транспорт', active: true, color: '#2dd4bf' }, // Teal
     { id: 'greenery', label: 'Зеленые Зоны', active: true, color: '#0f766e' }, // Dark Teal
     { id: 'water', label: 'Набережная', active: true, color: '#3b82f6' },
   ],
