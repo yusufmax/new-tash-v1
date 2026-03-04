@@ -10,7 +10,6 @@ import * as THREE from 'three';
 import { POISystem } from './POISystem';
 import { LotSystem } from './LotSystem';
 import { WeatherSystem } from './WeatherSystem';
-import { TrafficSystem } from './TrafficSystem';
 
 export const Experience: React.FC = () => {
   const isNight = useStore(state => state.isNight);
@@ -55,7 +54,6 @@ export const Experience: React.FC = () => {
         <LotSystem />
         <ModelCity />
         <WeatherSystem />
-        <TrafficSystem />
         <DynamicClouds />
       </Suspense>
 
